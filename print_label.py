@@ -107,9 +107,10 @@ def print_label():
         "--printer", PRINTER_USB,
         "print",
         "-l", PRINTER_LABEL,
+        "--copies", str(copies),
         OUTPUT_FILE,
     ]
-    print("Sending to printer...")
+    print(f"Sending to printer ({copies} cop{'y' if copies == 1 else 'ies'})...")
     subprocess.run(cmd)
 
 
@@ -123,6 +124,7 @@ if __name__ == "__main__":
     parser.add_argument("--italic",  action="store_true", help="Italic text")
     parser.add_argument("--preview", action="store_true", help="Open label preview before printing")
     parser.add_argument("--print",   dest="do_print", action="store_true", help="Send to printer")
+    parser.add_argument("--copies", type=int, default=1, help="Number of copies to print (default: 1)")
 
     args = parser.parse_args()
 
@@ -136,6 +138,6 @@ if __name__ == "__main__":
         preview_label()
 
     if args.do_print:
-        print_label()
+        print_label(args.copies)
     elif not args.preview:
         print("Tip: use --preview to check the label, --print to send to printer.")
