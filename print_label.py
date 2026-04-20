@@ -99,19 +99,19 @@ def preview_label():
     subprocess.Popen(["xdg-open", OUTPUT_FILE])
 
 
-def print_label():
+def print_label(copies=1):
     cmd = [
         "brother_ql",
         "--backend", PRINTER_BACKEND,
-        "--model",   PRINTER_MODEL,
+        "--model", PRINTER_MODEL,
         "--printer", PRINTER_USB,
         "print",
         "-l", PRINTER_LABEL,
-        "--copies", str(copies),
         OUTPUT_FILE,
     ]
     print(f"Sending to printer ({copies} cop{'y' if copies == 1 else 'ies'})...")
-    subprocess.run(cmd)
+    for i in range(copies):
+        subprocess.run(cmd)
 
 
 if __name__ == "__main__":
