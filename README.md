@@ -9,5 +9,6 @@ Usage:
 - python3 print_label.py "Your text" --bold --italic
 - python3 print_label.py "Your text" --preview
 - python3 print_label.py "Your text" --preview --print
+- python3 print_label.py "Your text" --copies="number of copies to print (default: 1)"
 
 This script requires installation and configuration of the label printer before it will work. For installation of Brother ql-800 on your Gnu/Linux system, use this guide https://github.com/ICTools/ql-800-ubuntu
